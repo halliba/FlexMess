@@ -1,0 +1,74 @@
+﻿<Application x:Class="FlexMess.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:core="clr-namespace:FlexMess.Core;assembly=FlexMess.Core"
+             xmlns:flexMess="clr-namespace:FlexMess"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type core:Message}" x:Key="{x:Type core:Message}">
+            <Grid>
+                <Grid.Style>
+                    <Style TargetType="{x:Type Grid}">
+                        <Setter Property="Margin" Value="0,0,25,0"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Sender.UserId}" Value="{x:Static flexMess:Globals.UserId}">
+                                <Setter Property="Margin" Value="25,0,0,0"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto">
+                        <ColumnDefinition.Style>
+                            <Style TargetType="{x:Type ColumnDefinition}">
+                                <Setter Property="Width" Value="Auto"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Sender.UserId}" Value="{x:Static flexMess:Globals.UserId}">
+                                        <Setter Property="Width" Value="*"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ColumnDefinition.Style>
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="*">
+                        <ColumnDefinition.Style>
+                            <Style TargetType="{x:Type ColumnDefinition}">
+                                <Setter Property="Width" Value="*"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Sender.UserId}" Value="{x:Static flexMess:Globals.UserId}">
+                                        <Setter Property="Width" Value="Auto"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ColumnDefinition.Style>
+                    </ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Ellipse Grid.Column="0" Height="22" Width="22" VerticalAlignment="Bottom" Margin="3" Fill="Red">
+                    <Ellipse.Style>
+                        <Style TargetType="{x:Type Ellipse}">
+                            <Setter Property="Grid.Column" Value="0"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Sender.UserId}" Value="{x:Static flexMess:Globals.UserId}">
+                                    <Setter Property="Grid.Column" Value="1"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+                <Border Grid.Column="1" Background="DarkOliveGreen" CornerRadius="5" Margin="3">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Grid.Column" Value="1"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Sender.UserId}" Value="{x:Static flexMess:Globals.UserId}">
+                                    <Setter Property="Grid.Column" Value="0"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock Margin="5" Text="{Binding Text}" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                </Border>
+            </Grid>
+        </DataTemplate>
+    </Application.Resources>
+</Application>

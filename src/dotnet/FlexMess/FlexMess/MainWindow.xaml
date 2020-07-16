@@ -1,0 +1,23 @@
+﻿<Window x:Class="FlexMess.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlexMess"
+        xmlns:viewModels="clr-namespace:FlexMess.ViewModels"
+        xmlns:core="clr-namespace:FlexMess.Core;assembly=FlexMess.Core"
+        WindowStyle="None" Background="#00000000"  AllowsTransparency="True"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="300"
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Hidden" local:AutoScrollBehavior.AutoScroll="True" Background="#55000000">
+            <ItemsControl ItemsSource="{Binding Messages}" ItemTemplate="{StaticResource {x:Type core:Message}}"/>
+        </ScrollViewer>
+        <TextBox Grid.Row="1" Name="InputBox" Margin="3" Padding="5" KeyUp="InputBox_OnKeyUp"/>
+    </Grid>
+</Window>
